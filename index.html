@@ -1726,6 +1726,41 @@ tr:hover td{background:#F8F9FF}
     <div style="margin-top:10px;font-size:11px;color:#777;text-align:center">A: 브랜드이해도 · B: 소재·원단 · C: 봉제 · D: 부자재 · E: 패턴·핏감 · F: 마감 · G: 완성도</div>
   </div>
 
+  <!-- 샘플 평가 종합 인사이트 -->
+  <div class="card mb16" style="background:linear-gradient(135deg,#0A1931 0%,#1a2f52 100%);color:#fff">
+    <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.15)">
+      🔍 샘플 평가 종합 인사이트
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+      <div style="padding:16px 20px;border-right:1px solid rgba(255,255,255,.1)">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+          <span style="background:var(--bosideng);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">BOSIDENG</span>
+          <span style="font-size:12.5px;font-weight:700;color:#fff">종합 평가</span>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.85">
+          DJ/DV 2.1 · WJ 1.9 · <strong style="color:#FFD700">JP 3.2 (MLB 기준 2.3 상회)</strong><br>
+          소재·원단(B) 전반적으로 양호 · JP 품목 전 항목 MLB 기준 근접 또는 초과<br>
+          WJ 심실링·완성도 개선 필요 · DJ/DV 봉제·패턴 피드백 후 재샘플 권고
+        </p>
+      </div>
+      <div style="padding:16px 20px">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+          <span style="background:var(--tess);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">TESSELLATION</span>
+          <span style="font-size:12.5px;font-weight:700;color:#fff">종합 평가</span>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.85">
+          DJ/DV 2.1 · WJ 1.5 · JP 1.4<br>
+          DJ/DV E항목(패턴·핏감) 3.5 — 해당 품목 강점 확인<br>
+          <strong style="color:#FF6B6B">WJ 심실링 미적용 (판단불가) · JP 전반 1점대 — 심각한 품질 미흡</strong><br>
+          WJ·JP 품목 협력 가능성 재검토 필요
+        </p>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.6);text-align:center">
+      평가일: 2026.03.16 · 평가자: Lucy · Julia · 기준: 5점 척도, 7개 항목 (A–G)
+    </div>
+  </div>
+
   <!-- DJ / DV 카테고리 -->
   <div class="card mb16">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
@@ -1773,8 +1808,8 @@ tr:hover td{background:#F8F9FF}
         </tbody>
       </table>
     </div>
-    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">▼ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
-    <div class="tbl-wrap">
+    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;cursor:pointer;user-select:none" onclick="var t=this.nextElementSibling;var o=t.style.display!=='none';t.style.display=o?'none':'';this.innerHTML=(o?'▶':'▼')+' 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)'" title="클릭하여 펼치기/접기">▶ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
+    <div class="tbl-wrap" style="display:none">
       <table>
         <thead>
           <tr style="background:#E8EDF4">
@@ -1896,8 +1931,8 @@ tr:hover td{background:#F8F9FF}
         </tbody>
       </table>
     </div>
-    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">▼ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
-    <div class="tbl-wrap">
+    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;cursor:pointer;user-select:none" onclick="var t=this.nextElementSibling;var o=t.style.display!=='none';t.style.display=o?'none':'';this.innerHTML=(o?'▶':'▼')+' 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)'" title="클릭하여 펼치기/접기">▶ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
+    <div class="tbl-wrap" style="display:none">
       <table>
         <thead>
           <tr style="background:#E8EDF4">
@@ -2023,8 +2058,8 @@ tr:hover td{background:#F8F9FF}
         </tbody>
       </table>
     </div>
-    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">▼ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
-    <div class="tbl-wrap">
+    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px;cursor:pointer;user-select:none" onclick="var t=this.nextElementSibling;var o=t.style.display!=='none';t.style.display=o?'none':'';this.innerHTML=(o?'▶':'▼')+' 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)'" title="클릭하여 펼치기/접기">▶ 항목별 평가 세부 점수 (Lucy + Julia 평균, 5점 척도)</div>
+    <div class="tbl-wrap" style="display:none">
       <table>
         <thead>
           <tr style="background:#E8EDF4">
@@ -2101,41 +2136,6 @@ tr:hover td{background:#F8F9FF}
 
   <div style="background:#FFF8E1;border-left:4px solid #F9A825;padding:10px 14px;font-size:12px;color:#555;margin-bottom:16px">
     ※ MLB 기준 샘플: 현행 협력사 제작 실물 기준 &nbsp;|&nbsp; 평가: Lucy · Julia 2인, 5점 척도 7개 항목 (A–G) &nbsp;|&nbsp; WJ C항목 TESSELLATION 심실링 1문항 판단불가 제외 처리
-  </div>
-
-  <!-- 샘플 평가 종합 인사이트 -->
-  <div class="card" style="background:linear-gradient(135deg,#0A1931 0%,#1a2f52 100%);color:#fff">
-    <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.15)">
-      🔍 샘플 평가 종합 인사이트
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
-      <div style="padding:16px 20px;border-right:1px solid rgba(255,255,255,.1)">
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
-          <span style="background:var(--bosideng);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">BOSIDENG</span>
-          <span style="font-size:12.5px;font-weight:700;color:#fff">종합 평가</span>
-        </div>
-        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.85">
-          DJ/DV 2.1 · WJ 1.9 · <strong style="color:#FFD700">JP 3.2 (MLB 기준 2.3 상회)</strong><br>
-          소재·원단(B) 전반적으로 양호 · JP 품목 전 항목 MLB 기준 근접 또는 초과<br>
-          WJ 심실링·완성도 개선 필요 · DJ/DV 봉제·패턴 피드백 후 재샘플 권고
-        </p>
-      </div>
-      <div style="padding:16px 20px">
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
-          <span style="background:var(--tess);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">TESSELLATION</span>
-          <span style="font-size:12.5px;font-weight:700;color:#fff">종합 평가</span>
-        </div>
-        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.85">
-          DJ/DV 2.1 · WJ 1.5 · JP 1.4<br>
-          DJ/DV E항목(패턴·핏감) 3.5 — 해당 품목 강점 확인<br>
-          <strong style="color:#FF6B6B">WJ 심실링 미적용 (판단불가) · JP 전반 1점대 — 심각한 품질 미흡</strong><br>
-          WJ·JP 품목 협력 가능성 재검토 필요
-        </p>
-      </div>
-    </div>
-    <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.6);text-align:center">
-      평가일: 2026.03.16 · 평가자: Lucy · Julia · 기준: 5점 척도, 7개 항목 (A–G)
-    </div>
   </div>
 
 </div><!-- /s-sample -->
