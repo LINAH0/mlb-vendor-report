@@ -224,13 +224,12 @@ tr:hover td{background:#F8F9FF}
 
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-btn on" data-sec="item">01 협력사 현황 팩트</div>
-  <div class="nav-btn" data-sec="overview">02 선정 배경</div>
-  <div class="nav-btn" data-sec="comparison">03 Q&amp;A 심층 비교</div>
-  <div class="nav-btn" data-sec="factory">04 공장 현황</div>
-  <div class="nav-btn" data-sec="backdata">05 Back Data 분석</div>
-  <div class="nav-btn" data-sec="evaluation">06 역량 평가</div>
-  <div class="nav-btn" data-sec="sample">07 최종 선정 확정</div>
+  <div class="nav-btn on" data-sec="backdata">01 협력사 현황</div>
+  <div class="nav-btn" data-sec="overview">02 신규 선정 배경</div>
+  <div class="nav-btn" data-sec="comparison">03 신규 협력사 심층 비교</div>
+  <div class="nav-btn" data-sec="factory">04 신규 공장 현황</div>
+  <div class="nav-btn" data-sec="sample">05 신규 공장 품질 분석</div>
+  <div class="nav-btn" data-sec="evaluation">06 최종 선정 확정</div>
   <!-- BRAND TOGGLE -->
   <div class="brand-toggle">
     <div id="brand-btn-woven" class="brand-btn on" onclick="switchBrand('woven')">🧵 WOVEN</div>
@@ -332,7 +331,7 @@ tr:hover td{background:#F8F9FF}
 </div>
 
 <!-- ========================= 02. ITEM 현황 ========================= -->
-<div class="section on" id="s-item">
+<div class="section" id="s-item">
   <div class="stitle"><div class="stitle-icon">📦</div>WOVEN 카테고리 협력사 현황 분석 (26SS/26FW 기준)</div>
 
   <!-- 섹션 인사이트 -->
@@ -1145,7 +1144,7 @@ tr:hover td{background:#F8F9FF}
 
 
 <!-- ========================= 06. Back Data 분석 ========================= -->
-<div class="section" id="s-backdata">
+<div class="section on" id="s-backdata">
   <div class="stitle"><div class="stitle-icon">📊</div>26SS/26FW Back Data 분석 — M/U · 불량률 기반 신규 협력사 선정 근거</div>
 
   <!-- KPI -->
@@ -2302,7 +2301,7 @@ tr:hover td{background:#F8F9FF}
 </div>
 
 <!-- KINT 02 -->
-<div class="section on" id="ks-item">
+<div class="section" id="ks-item">
   <div class="stitle"><div class="stitle-icon">📦</div>KINT 카테고리 협력사 현황 분석</div>
 
   <!-- 인사이트 배너 -->
@@ -3066,7 +3065,7 @@ tr:hover td{background:#F8F9FF}
 </div>
 
 <!-- KINT 06 -->
-<div class="section" id="ks-backdata">
+<div class="section on" id="ks-backdata">
   <div class="stitle"><div class="stitle-icon">📊</div>KINT Back Data 분석</div>
 
   <!-- 핵심 인사이트 블록 -->
@@ -3466,7 +3465,7 @@ function switchBrand(brand) {
     ? document.querySelectorAll('#brand-woven-content .section')
     : document.querySelectorAll('#brand-kint-content .section');
   secs.forEach(function(s) { s.classList.remove('on'); });
-  var firstId = brand === 'woven' ? 's-item' : 'ks-item';
+  var firstId = brand === 'woven' ? 's-backdata' : 'ks-backdata';
   var firstSec = document.getElementById(firstId); if (firstSec) firstSec.classList.add('on');
   // Reset nav btn state
   navBtns.forEach(function(b) { b.classList.remove('on'); });
