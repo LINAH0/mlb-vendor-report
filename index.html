@@ -3468,7 +3468,7 @@ function openCostChart(key){
 /* ── KNIT 원가 구조 비교 팝업 (MLB 표준 기준 / SUNRISE vs TIMES) ── */
 var _kCostData={
   TS:{
-    n:'TS (티셔츠) — 3ATSB1053',
+    n:'TS (티셔츠)',
     mlb:    {fob_krw:12930,fabric_krw:3920, cm_krw:null,mu:6.11,retail:79000, cons:'0.71M (63IN 폭)'},
     sunrise:{fob_krw:11962,fabric_krw:4548, cm_krw:2145,mu:6.00,retail:79000, cons:'1.38 YD (55IN 폭)'},
     times:  {fob_krw:9852, fabric_krw:3408, cm_krw:2202,mu:7.29,retail:79000, cons:'0.80 M'},
@@ -3476,7 +3476,7 @@ var _kCostData={
     note_tm:'원단: $2.38/pc · CM: $1.54 · 원단 자가생산 우위'
   },
   HD:{
-    n:'HD (후드) — 3AHDB0654',
+    n:'HD (후드)',
     mlb:    {fob_krw:25460,fabric_krw:12141,cm_krw:null,mu:5.07,retail:129000,cons:'1.32M (57IN 폭)'},
     sunrise:{fob_krw:26212,fabric_krw:13324,cm_krw:3933,mu:4.47,retail:129000,cons:'1.56 YD (64IN 폭)'},
     times:  {fob_krw:19822,fabric_krw:10321,cm_krw:4862,mu:5.92,retail:129000,cons:'1.34 M'},
@@ -3484,7 +3484,7 @@ var _kCostData={
     note_tm:'원단: $7.22/pc(SORONA 자체조달) · CM: $3.40'
   },
   SP:{
-    n:'SP (스포츠팬츠) — TIMES: 3ASPM0253 / SUNRISE: 3ASPB0653†',
+    n:'SP (스포츠팬츠)',
     mlb:    {fob_krw:16030,fabric_krw:6139, cm_krw:null,mu:5.55,retail:89000, cons:'0.81M (57IN 폭)'},
     sunrise:{fob_krw:23292,fabric_krw:11715,cm_krw:4576,mu:3.47,retail:89000, cons:'1.66 YD (55IN 폭)†'},
     times:  {fob_krw:14242,fabric_krw:5985, cm_krw:4576,mu:5.68,retail:89000, cons:'0.84 M'},
@@ -3536,7 +3536,7 @@ function openKnitCostChart(key){
     +winCell(sr.fob_krw,tm.fob_krw,true)+'</tr>';
   /* 원단 단가 */
   rows+='<tr style="background:#FFF8E1">'
-    +'<td style="padding:4px 6px;font-size:11px;font-weight:600">원단 단가</td>'
+    +'<td style="padding:4px 6px;font-size:11px;font-weight:600">원자재 계</td>'
     +'<td style="padding:4px 6px;text-align:right;font-size:11px;color:#555">'+fmtKrw(ml.fabric_krw)+'</td>'
     +'<td style="padding:4px 6px;text-align:right;font-size:11px;color:#2E7D32">'+fmtKrw(sr.fabric_krw)+'</td>'
     +'<td style="padding:4px 6px;text-align:right;font-size:11px;color:#1565C0">'+fmtKrw(tm.fabric_krw)+'</td>'
