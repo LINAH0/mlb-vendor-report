@@ -1715,8 +1715,46 @@ tr:hover td{background:#F8F9FF}
   </div>
 
   <!-- COST SHEET 비교 섹션 -->
-  <div class="card mb16" style="margin-top:8px">
-    <div class="card-t">COST：원가견적 종합 인사이트</div>
+  <!-- COST 종합 인사이트 (QUALITY 동일 양식) -->
+  <div class="card mb16" style="background:linear-gradient(135deg,#0A1931 0%,#1a2f52 100%);color:#fff;margin-top:8px">
+    <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.15)">
+      COST：원가견적 종합 인사이트
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+      <div style="padding:16px 20px;border-right:1px solid rgba(255,255,255,.1)">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+          <span style="background:var(--bosideng);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">BOSIDENG</span>
+          <span style="font-size:12.5px;font-weight:700;color:#fff">M/U 우수 품목</span>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.9">
+          <strong style="color:#FFD700">WJ GORE-TEX</strong> 5.832 — 현행 대비 <strong style="color:#4CAF50">+1.022 ✅</strong><br>
+          <strong style="color:#FFD700">JP 베스볼자켓</strong> 4.758 — 현행 대비 <strong style="color:#4CAF50">+0.119 ✅</strong><br>
+          <span style="color:rgba(255,255,255,.45);font-size:11px">DJ 롱패딩 4.163 / DJ 숏패딩 4.181 / WJ 기본 4.790 — 협의 필요</span>
+        </p>
+      </div>
+      <div style="padding:16px 20px">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px">
+          <span style="background:#607D8B;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px">현행 협력사 대비</span>
+          <span style="font-size:12.5px;font-weight:700;color:#fff">M/U 협의 필요</span>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.9">
+          <strong style="color:#FF6B6B">DJ 롱패딩(3ADJV2266)</strong> — 현행 4.221 vs BOSI 4.163 → −0.058<br>
+          <strong style="color:#FF6B6B">DJ 숏패딩(3ADJB3166)</strong> — 현행 4.674 vs BOSI 4.181 → −0.493<br>
+          <strong style="color:#FF6B6B">WJ 비교모델(3FWJB1163)</strong> — 현행 5.341 vs BOSI 4.790 → −0.551
+        </p>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 20px;background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.35);border-radius:8px;display:flex;align-items:center;gap:10px">
+      <span style="font-size:16px">💰</span>
+      <span style="font-size:13px;font-weight:700;color:#FFD700">원가 종합: <span style="color:#fff">WJ·JP 품목은 현행 대비 M/U 우위 확인</span> — DJ 2종은 현행 협력사 대비 낮아 추가 네고 검토 필요. 전략적 배정 조정 시 전체 M/U 개선 가능</span>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.6);text-align:center">
+      견적 기준일: 2026.03.16 · M/U = 소비자가/원가 배율 · 환율 1,440원/$ · 관세 1.5% · 마진 8% · 패킹운임 2% 포함
+    </div>
+  </div>
+
+  <!-- COST 상세 테이블 -->
+  <div class="card mb16">
     <div style="font-size:12px;color:#555;margin-bottom:8px">MLB COST SHEET_MLB STANDARD 기준값 vs BOSIDENG 원가견적 비교 · M/U = 소비자가/원가 배율 (높을수록 MLB 원가경쟁력 우위) · 환율 1,440원/$ 적용</div>
     <!-- 원가 구성 안내 박스 -->
     <div style="background:#FFF8E1;border-left:4px solid #F9A825;padding:10px 14px;font-size:12px;color:#555;margin-bottom:12px;border-radius:0 4px 4px 0">
@@ -1794,24 +1832,6 @@ tr:hover td{background:#F8F9FF}
         </tbody>
       </table>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
-      <div style="background:#E8F5E9;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#1B5E20;margin-bottom:6px">✅ BOSIDENG 현행 대비 M/U 우수 품목</div>
-        <ul style="font-size:12px;padding-left:15px;margin:0;line-height:2">
-          <li><strong>WJ GORE-TEX(3AWJB0364)</strong>: BOSIDENG 5.832 &gt; 현행 4.810 → +1.022 우수</li>
-          <li><strong>JP 베스볼자켓(3AJPV0364)</strong>: BOSIDENG 4.758 &gt; 현행 4.639 → +0.119 우수</li>
-        </ul>
-      </div>
-      <div style="background:#FFF3E0;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#BF360C;margin-bottom:6px">⚠️ M/U 협의 필요 품목 (현행 대비 낮음)</div>
-        <ul style="font-size:12px;padding-left:15px;margin:0;line-height:2">
-          <li><strong>DJ 롱패딩(3ADJV2266)</strong>: BOSIDENG 4.163 ≈ 현행 4.221 → 유사 수준, 협의 필요</li>
-          <li><strong>WJ 비교모델(3FWJB1163)</strong>: BOSIDENG 4.790 &lt; 현행 5.341 → −0.551 협의 필요</li>
-          <li><strong>DJ 숏패딩(3ADJB3166)</strong>: BOSIDENG 4.181 &lt; 현행 4.674 → −0.493 협의 필요</li>
-        </ul>
-      </div>
-    </div>
-    <p class="note" style="margin-top:10px">※ 환율 1,440원/$ 기준 · BOSIDENG 원가견적서 2026.03.16 기준 · 공임(CM) 환율 1,440원/$ 환산 · 관세 1.5%·마진 8%·패킹운임 2% 최종 원가 포함 · 최종 결정 전 추가 네고 검토 권고</p>
   </div>
 
 </div><!-- /s-sample -->
