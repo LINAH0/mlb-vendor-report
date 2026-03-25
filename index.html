@@ -3324,33 +3324,33 @@ function initRadarChart() {
 var _cCostData={
   DJ_long:{
     n:'DJ 롱패딩 — NF0A832J / 3ADJV2266',
-    l:['원자재','아트웍·로고','부자재','공임 CM','마진','관세','물류·검사'],
-    mlb:{tot:80.53,u:[11.11,3.24,42.16,13.00,9.04,0,1.98],coo:'미얀마',vendor:'나디아퍼시픽',mr:13,tr:0},
-    bosi:{tot:80.92,u:[15.49,1.30,39.36,18.00,5.00,0.85,0.92],coo:'중국',mr:8,tr:1.5}
+    l:['원자재','공임 CM','마진','관세'],
+    mlb:{tot:80.53,u:[11.11,13.00,9.04,0],coo:'미얀마',vendor:'나디아퍼시픽',mr:13,tr:0},
+    bosi:{tot:80.92,u:[15.49,18.00,5.00,0.85],coo:'중국',mr:8,tr:1.5}
   },
   DJ_short:{
     n:'DJ 숏패딩 — NF0A831F / 3ADJB3166',
-    l:['원자재','아트웍·로고','부자재','공임 CM','마진','관세','물류·검사'],
-    mlb:{tot:40.00,u:[6.65,3.03,16.28,8.50,4.48,0,1.06],coo:'미얀마',vendor:'기도산업',mr:13,tr:0},
-    bosi:{tot:58.42,u:[8.26,1.15,30.40,13.50,3.56,0.66,0.89],coo:'중국',mr:8,tr:1.5}
+    l:['원자재','공임 CM','마진','관세'],
+    mlb:{tot:40.00,u:[6.65,8.50,4.48,0],coo:'미얀마',vendor:'기도산업',mr:13,tr:0},
+    bosi:{tot:58.42,u:[8.26,13.50,3.56,0.66],coo:'중국',mr:8,tr:1.5}
   },
   WJ_gore:{
     n:'WJ 고프코어 3L — NF0A8DMD / 3AWJB0364',
-    l:['원자재','아트웍·로고','부자재','공임 CM','마진','관세','물류·검사'],
-    mlb:{tot:49.29,u:[6.68,0.60,17.67,17.00,6.29,0,1.05],coo:'미얀마',vendor:'기도산업',mr:15,tr:0},
-    bosi:{tot:40.49,u:[7.79,1.30,9.62,18.00,2.63,0.49,0.66],coo:'중국',mr:8,tr:1.5}
+    l:['원자재','공임 CM','마진','관세'],
+    mlb:{tot:49.29,u:[6.68,17.00,6.29,0],coo:'미얀마',vendor:'기도산업',mr:15,tr:0},
+    bosi:{tot:40.49,u:[7.79,18.00,2.63,0.49],coo:'중국',mr:8,tr:1.5}
   },
   WJ_basic:{
     n:'WJ 비교모델 — NF0A8BWD / 3FWJB1163',
-    l:['원자재','아트웍·로고','부자재','공임 CM','마진','관세','물류·검사'],
-    mlb:{tot:19.89,u:[4.18,0.75,2.96,8.80,2.50,0,0.70],coo:'베트남',vendor:'나디아퍼시픽',mr:15,tr:0},
-    bosi:{tot:24.51,u:[7.50,0.80,3.31,10.30,1.81,0.34,0.45],coo:'중국',mr:8,tr:1.5}
+    l:['원자재','공임 CM','마진','관세'],
+    mlb:{tot:19.89,u:[4.18,8.80,2.50,0],coo:'베트남',vendor:'나디아퍼시픽',mr:15,tr:0},
+    bosi:{tot:24.51,u:[7.50,10.30,1.81,0.34],coo:'중국',mr:8,tr:1.5}
   },
   JP_baseball:{
     n:'JP 베스볼자켓 — U5DPD8U003 / 3AJPV0364',
-    l:['원자재','아트웍·로고','부자재','공임 CM','마진','관세','물류·검사'],
-    mlb:{tot:42.76,u:[13.79,1.75,8.43,10.50,5.17,2.17,0.95],coo:'중국',vendor:'ITOCHU',mr:15,tr:6.3},
-    bosi:{tot:40.03,u:[6.33,8.00,10.21,11.75,1.83,1.45,0.46],coo:'중국',mr:8,tr:6.3}
+    l:['원자재','공임 CM','마진','관세'],
+    mlb:{tot:42.76,u:[13.79,10.50,5.17,2.17],coo:'중국',vendor:'ITOCHU',mr:15,tr:6.3},
+    bosi:{tot:40.03,u:[6.33,11.75,1.83,1.45],coo:'중국',mr:8,tr:6.3}
   }
 };
 var _cChartInst=null;
@@ -3370,34 +3370,34 @@ function openCostChart(key){
   var rows='';
   for(var i=0;i<d.l.length;i++){
     var mlbVal,bosiVal,diffStr,diffColor;
-    if(i===3){
+    if(i===0){
+      /* 원자재 — 실제 금액 */
+      mlbVal='$'+d.mlb.u[0].toFixed(2);
+      bosiVal='$'+d.bosi.u[0].toFixed(2);
+      var rd=d.bosi.u[0]-d.mlb.u[0];
+      diffStr=(rd>=0?'▲ +':'▼ ')+Math.abs(rd).toFixed(2);
+      diffColor=rd>=0?'#C8102E':'#1B5E20';
+    } else if(i===1){
       /* 공임 CM — 실제 금액 */
-      mlbVal='$'+d.mlb.u[3].toFixed(2);
-      bosiVal='$'+d.bosi.u[3].toFixed(2);
-      var cd=d.bosi.u[3]-d.mlb.u[3];
+      mlbVal='$'+d.mlb.u[1].toFixed(2);
+      bosiVal='$'+d.bosi.u[1].toFixed(2);
+      var cd=d.bosi.u[1]-d.mlb.u[1];
       diffStr=(cd>=0?'▲ +':'▼ ')+Math.abs(cd).toFixed(2);
       diffColor=cd>=0?'#C8102E':'#1B5E20';
-    } else if(i===4){
+    } else if(i===2){
       /* 마진 — 적용률 % */
       mlbVal=d.mlb.mr+'%';
       bosiVal=d.bosi.mr+'%';
       var md=d.bosi.mr-d.mlb.mr;
       diffStr=(md>=0?'▲ +':'▼ ')+Math.abs(md).toFixed(1)+'pp';
       diffColor=md>=0?'#C8102E':'#1B5E20';
-    } else if(i===5){
+    } else if(i===3){
       /* 관세 — 적용률 % */
       mlbVal=d.mlb.tr+'%';
       bosiVal=d.bosi.tr+'%';
       var td2=d.bosi.tr-d.mlb.tr;
       diffStr=(td2>=0?'▲ +':'▼ ')+Math.abs(td2).toFixed(1)+'pp';
       diffColor=td2>=0?'#C8102E':'#1B5E20';
-    } else {
-      /* 그 외 — 총원가 대비 비중 */
-      mlbVal=mlbPct[i].toFixed(1)+'%';
-      bosiVal=bosiPct[i].toFixed(1)+'%';
-      var pd=bosiPct[i]-mlbPct[i];
-      diffStr=(pd>=0?'▲ +':'▼ ')+Math.abs(pd).toFixed(1)+'pp';
-      diffColor=pd>=0?'#C8102E':'#1B5E20';
     }
     rows+='<tr style="background:'+colors[i]+'">'
       +'<td style="padding:4px 8px;font-size:11px;font-weight:600">'+d.l[i]+'</td>'
@@ -3434,7 +3434,7 @@ function openCostChart(key){
     +'<th style="padding:5px 8px;font-size:10.5px;text-align:right;font-weight:700">차이</th>'
     +'</tr></thead><tbody>'+rows+'</tbody></table>'
     +'<div style="margin-top:6px;font-size:9.5px;color:#aaa;line-height:1.8">'
-    +'📌 비중(%): 총원가 대비 구성 비율 · 공임: 실제 금액($) · 마진·관세: 적용률(%)</div>'
+    +'📌 원자재·공임: 실제 금액($) · 마진·관세: 적용률(%)</div>'
     +'</div>'
     +'<div style="position:relative;height:380px"><canvas id="costRdrCanvas"></canvas></div>'
     +'</div>'
