@@ -3028,14 +3028,14 @@ tr:hover td{background:#F8F9FF}
   <!-- COST 상세 테이블 -->
   <div class="card mb16">
     <div class="card-t">신규 협력사 원가 비교 분석 — TS·HD·SP 3품목 (MLB 표준 대비)</div>
-    <div style="font-size:12px;color:#555;margin-bottom:8px">MLB COST SHEET 기준값 vs SUNRISE2 / TIMES 3.25 원가견적 비교 · M/U = 소비자가/원가 배율 · 환율 1,430원/$ 적용</div>
+    <div style="font-size:12px;color:#555;margin-bottom:8px">MLB COST SHEET 기준값 vs SUNRISE2 / TIMES 3.25 원가견적 비교 · M/U = 소비자가/원가 배율 · 환율 1,430원/$ 적용 &nbsp;<span style="font-size:11px;color:#1565C0;font-weight:600">📊 각 행 클릭 → 원가 구조 분석 팝업</span></div>
     <div class="tbl-wrap">
       <table>
         <thead>
           <tr><th>품목</th><th>Style No.</th><th>소비자가</th><th>MLB 표준 사입가</th><th>SUNRISE2 FOB</th><th>TIMES 3.25 FOB</th><th>SUNRISE M/U</th><th>TIMES M/U</th><th>원가 비고</th></tr>
         </thead>
         <tbody>
-          <tr>
+          <tr title="클릭하여 원가 구조 분석" style="cursor:pointer" onclick="openKnitCostChart('TS')">
             <td><strong>TS (티셔츠)</strong></td>
             <td style="font-size:11px;color:#888">3ATSB1053</td>
             <td>79,000원</td>
@@ -3046,7 +3046,7 @@ tr:hover td{background:#F8F9FF}
             <td style="background:#E8F5E9;font-weight:700;color:var(--green)">7.29</td>
             <td style="font-size:11.5px">TIMES 원단 단가 우위<br>($2.38 vs SUNRISE $3.18/pc)</td>
           </tr>
-          <tr>
+          <tr title="클릭하여 원가 구조 분석" style="cursor:pointer" onclick="openKnitCostChart('HD')">
             <td><strong>HD (후드)</strong></td>
             <td style="font-size:11px;color:#888">3AHDB0654</td>
             <td>129,000원</td>
@@ -3057,7 +3057,7 @@ tr:hover td{background:#F8F9FF}
             <td style="background:#E8F5E9;font-weight:700;color:var(--green)">5.92</td>
             <td style="font-size:11.5px">TIMES SORONA 원단 자체조달<br>($7.22 vs SUNRISE $9.32/pc)</td>
           </tr>
-          <tr>
+          <tr title="클릭하여 원가 구조 분석" style="cursor:pointer" onclick="openKnitCostChart('SP')">
             <td><strong>SP (스포츠팬츠)</strong></td>
             <td style="font-size:11px;color:#888">3ASPM0253</td>
             <td>89,000원</td>
@@ -3457,6 +3457,136 @@ function openCostChart(key){
         scales:{r:{beginAtZero:true,max:maxPct,
           ticks:{font:{size:9},stepSize:Math.ceil(maxPct/5),callback:function(v){return v+'%';},backdropColor:'transparent'},
           pointLabels:{font:{size:11,weight:'700'}},
+          grid:{color:'rgba(0,0,0,.08)'},angleLines:{color:'rgba(0,0,0,.08)'}}},
+        plugins:{
+          legend:{position:'bottom',labels:{font:{size:10},boxWidth:10,padding:8}},
+          tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.r.toFixed(1)+'%';}}}
+        }}});
+  },50);
+}
+
+/* ── KNIT 원가 구조 비교 팝업 (SUNRISE vs TIMES) ── */
+var _kCostData={
+  TS:{
+    n:'TS (티셔츠) — 3ATSB1053',
+    sunrise:{fob_krw:11962,fabric_krw:4548,cm_krw:2145,mu:6.00,retail:79000},
+    times:  {fob_krw:9852, fabric_krw:3408,cm_krw:2202,mu:7.29,retail:79000},
+    note_sr:'원단: $3.18/pc · CM: $1.50',
+    note_tm:'원단: $2.38/pc · CM: $1.54 · 원단 자가생산 우위'
+  },
+  HD:{
+    n:'HD (후드) — 3AHDB0654',
+    sunrise:{fob_krw:26212,fabric_krw:13324,cm_krw:3933,mu:4.47,retail:129000},
+    times:  {fob_krw:19822,fabric_krw:10321,cm_krw:4862,mu:5.92,retail:129000},
+    note_sr:'원단: $9.32/pc · CM: $2.75',
+    note_tm:'원단: $7.22/pc(SORONA 자체조달) · CM: $3.40'
+  },
+  SP:{
+    n:'SP (스포츠팬츠) — TIMES: 3ASPM0253 / SUNRISE: 3ASPB0653†',
+    sunrise:{fob_krw:23292,fabric_krw:11715,cm_krw:4576,mu:3.47,retail:89000},
+    times:  {fob_krw:14242,fabric_krw:5985, cm_krw:4576,mu:5.68,retail:89000},
+    note_sr:'별도 스타일(3ASPB0653) — 직접 비교 불가 †',
+    note_tm:'표준 동일 스타일 · 원단: $4.19/pc(자체조달)'
+  }
+};
+function openKnitCostChart(key){
+  var d=_kCostData[key]; if(!d)return;
+  var sr=d.sunrise, tm=d.times;
+  var exr=1430;
+  /* FOB 구성 */
+  var sr_other=sr.fob_krw-sr.fabric_krw-sr.cm_krw;
+  var tm_other=tm.fob_krw-tm.fabric_krw-tm.cm_krw;
+  /* 레이더 축: 원단비중(%), 공임비중(%), 기타비중(%), 원가율(1/MU×100) */
+  var sr_pct=[
+    parseFloat((sr.fabric_krw/sr.fob_krw*100).toFixed(1)),
+    parseFloat((sr.cm_krw/sr.fob_krw*100).toFixed(1)),
+    parseFloat((sr_other/sr.fob_krw*100).toFixed(1)),
+    parseFloat((1/sr.mu*100).toFixed(1))
+  ];
+  var tm_pct=[
+    parseFloat((tm.fabric_krw/tm.fob_krw*100).toFixed(1)),
+    parseFloat((tm.cm_krw/tm.fob_krw*100).toFixed(1)),
+    parseFloat((tm_other/tm.fob_krw*100).toFixed(1)),
+    parseFloat((1/tm.mu*100).toFixed(1))
+  ];
+  var labels=['원단 비중(%)','공임 비중(%)','기타 비중(%)','원가율(%)\n(낮을수록 MLB유리)'];
+  var fobDiff=sr.fob_krw-tm.fob_krw;
+  var muDiff=tm.mu-sr.mu;
+  /* 테이블 행 생성 */
+  function krwRow(label,srKrw,tmKrw,lowerIsBetter){
+    var diff=srKrw-tmKrw;
+    var diffPct=Math.abs(diff/srKrw*100).toFixed(1);
+    var winner=diff>0?'TIMES':'SUNRISE';
+    var color=diff>0?(lowerIsBetter?'#1B5E20':'#C8102E'):(lowerIsBetter?'#C8102E':'#1B5E20');
+    var arrow=diff>0?'▼ ':'▲ ';
+    return '<tr><td style="padding:4px 8px;font-size:11px;font-weight:600">'+label+'</td>'
+      +'<td style="padding:4px 8px;text-align:right;font-size:11px;color:#555">₩'+srKrw.toLocaleString()+'<br><small style="color:#999">$'+(srKrw/exr).toFixed(2)+'</small></td>'
+      +'<td style="padding:4px 8px;text-align:right;font-size:11px;font-weight:700;color:#1565C0">₩'+tmKrw.toLocaleString()+'<br><small style="color:#999">$'+(tmKrw/exr).toFixed(2)+'</small></td>'
+      +'<td style="padding:4px 8px;text-align:right;font-size:10.5px;color:'+color+'">'+(diff>0?arrow+winner+' ▼'+diffPct+'%':arrow+winner+' ▼'+diffPct+'%')+'</td></tr>';
+  }
+  var rows='';
+  rows+=krwRow('FOB 합계',sr.fob_krw,tm.fob_krw,true);
+  rows+=krwRow('원단 단가',sr.fabric_krw,tm.fabric_krw,true);
+  rows+=krwRow('공임 CM',sr.cm_krw,tm.cm_krw,true);
+  rows+=krwRow('부자재·기타',sr_other,tm_other,true);
+  rows+='<tr style="background:#E8F5E9"><td style="padding:4px 8px;font-size:11px;font-weight:600">M/U 배수</td>'
+    +'<td style="padding:4px 8px;text-align:right;font-size:12px;font-weight:700;color:#2E7D32">'+sr.mu.toFixed(2)+'</td>'
+    +'<td style="padding:4px 8px;text-align:right;font-size:12px;font-weight:700;color:#1565C0">'+tm.mu.toFixed(2)+'</td>'
+    +'<td style="padding:4px 8px;text-align:right;font-size:10.5px;color:'+(muDiff>=0?'#1B5E20':'#C8102E')+'">'+(muDiff>=0?'TIMES ▲+':'SUNRISE ▲+')+Math.abs(muDiff).toFixed(2)+'</td></tr>';
+  rows+='<tr style="background:#E8EDF4;border-top:2px solid #aaa"><td style="padding:5px 8px;font-size:11px;font-weight:700">소비자가</td>'
+    +'<td style="padding:5px 8px;text-align:right;font-size:11px;font-weight:700;color:#555">₩'+sr.retail.toLocaleString()+'</td>'
+    +'<td style="padding:5px 8px;text-align:right;font-size:11px;font-weight:700;color:#1565C0">₩'+tm.retail.toLocaleString()+'</td>'
+    +'<td style="padding:5px 8px;text-align:right;font-size:10.5px;color:#999">기준 동일</td></tr>';
+  var modal=document.getElementById('knitCostModal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='knitCostModal';
+    modal.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.82);z-index:9999;display:flex;align-items:center;justify-content:center';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML='<div style="background:#fff;border-radius:14px;padding:20px 26px;width:860px;max-width:97vw;cursor:default;box-shadow:0 24px 64px rgba(0,0,0,.5)" onclick="event.stopPropagation()">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'
+    +'<span style="font-size:13px;font-weight:700;color:#0A1931">📊 KNIT 원가 구조 비교 분석 — SUNRISE vs TIMES</span>'
+    +'<button onclick="document.getElementById(\'knitCostModal\').style.display=\'none\';if(window._kChartInst){window._kChartInst.destroy();window._kChartInst=null;}" style="background:none;border:none;font-size:20px;cursor:pointer;color:#888">✕</button>'
+    +'</div>'
+    +'<div style="font-size:12.5px;font-weight:700;color:#333;margin-bottom:4px">'+d.n+'</div>'
+    +'<div style="font-size:11px;color:#777;margin-bottom:14px">'
+    +'<span style="background:#E8F5E9;color:#2E7D32;padding:2px 8px;border-radius:10px;margin-right:6px;font-weight:700">SUNRISE — '+d.note_sr+'</span>'
+    +'<span style="background:#E3F2FD;color:#1565C0;padding:2px 8px;border-radius:10px;font-weight:700">TIMES — '+d.note_tm+'</span>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start">'
+    +'<div>'
+    +'<table style="width:100%;border-collapse:collapse"><thead><tr style="background:#E8EDF4">'
+    +'<th style="padding:5px 8px;font-size:10.5px;text-align:left;font-weight:700">항목</th>'
+    +'<th style="padding:5px 8px;font-size:10.5px;text-align:right;font-weight:700;color:#2E7D32">SUNRISE</th>'
+    +'<th style="padding:5px 8px;font-size:10.5px;text-align:right;font-weight:700;color:#1565C0">TIMES</th>'
+    +'<th style="padding:5px 8px;font-size:10.5px;text-align:right;font-weight:700">차이</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<div style="margin-top:6px;font-size:9.5px;color:#aaa;line-height:1.8">'
+    +'📌 환율 1,430원/$ 기준 · 기타: 부자재+마진+관세+물류 추정값<br>'
+    +'원가율(%) = 1÷M/U×100 — 낮을수록 MLB 유리 (TIMES 유리)</div>'
+    +'</div>'
+    +'<div style="position:relative;height:340px"><canvas id="knitCostRdrCanvas"></canvas></div>'
+    +'</div>'
+    +'<div style="margin-top:10px;font-size:10.5px;color:#aaa;text-align:center">🟢 SUNRISE(녹색) vs 🔵 TIMES(청색) · 원단·공임·기타 비중(%): 낮을수록 원가 효율 우위 · 원가율: 낮을수록 M/U 높음(MLB 유리) · 외부 클릭하여 닫기</div>'
+    +'</div>';
+  modal.onclick=function(e){if(e.target===this){this.style.display='none';if(window._kChartInst){window._kChartInst.destroy();window._kChartInst=null;}}};
+  modal.style.display='flex';
+  setTimeout(function(){
+    var ctx=document.getElementById('knitCostRdrCanvas');
+    if(!ctx)return;
+    if(window._kChartInst){window._kChartInst.destroy();}
+    var maxVal=Math.ceil(Math.max.apply(null,sr_pct.concat(tm_pct))*1.2/10)*10;
+    if(maxVal<30)maxVal=30;
+    window._kChartInst=new Chart(ctx,{type:'radar',
+      data:{labels:labels,datasets:[
+        {label:'SUNRISE',data:sr_pct,borderColor:'#2E7D32',backgroundColor:'rgba(46,125,50,.15)',pointBackgroundColor:'#2E7D32',pointRadius:4,borderWidth:2},
+        {label:'TIMES',data:tm_pct,borderColor:'#1565C0',backgroundColor:'rgba(21,101,192,.15)',pointBackgroundColor:'#1565C0',pointRadius:4,borderWidth:2}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        scales:{r:{beginAtZero:true,max:maxVal,
+          ticks:{font:{size:9},stepSize:Math.ceil(maxVal/5),callback:function(v){return v+'%';},backdropColor:'transparent'},
+          pointLabels:{font:{size:10,weight:'700'}},
           grid:{color:'rgba(0,0,0,.08)'},angleLines:{color:'rgba(0,0,0,.08)'}}},
         plugins:{
           legend:{position:'bottom',labels:{font:{size:10},boxWidth:10,padding:8}},
